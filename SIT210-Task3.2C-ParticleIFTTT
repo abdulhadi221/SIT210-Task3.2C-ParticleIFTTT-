@@ -1,0 +1,37 @@
+int PhotoResistor = A5;
+int PhotoResistorPower = A0;
+//int led1 = D6;
+//int led2 = D7;
+void setup() {
+    
+pinMode(PhotoResistor, INPUT);
+pinMode(PhotoResistorPower, OUTPUT);
+//pinMode(led1, OUTPUT);
+//pinMode(led2, OUTPUT);
+
+digitalWrite(PhotoResistorPower,HIGH);
+}
+
+void loop() {
+
+
+int light = analogRead(PhotoResistor);
+
+if(light > 1 ){
+Particle.publish("Sun","Up", PRIVATE);
+//digitalWrite(led1, HIGH); 
+delay(1000);}
+// digitalWrite(led2,LOW) ; delay(1000);
+
+
+
+if(light < 1 ){
+Particle.publish("Sun","Down", PRIVATE);
+// digitalWrite(led1, LOW); delay(1000);
+//digitalWrite(led2,HIGH); 
+delay(1000);
+}
+
+
+delay (5000);
+}
